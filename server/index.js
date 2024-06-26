@@ -3,20 +3,20 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const { User } = require("./db/index.js");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 const PORT = process.env.PORT || 3000;
-const SECRET = "SecRete"; // This should be in an environment variable in a real application
+const DATABASE_URL1 = process.env.dataBaseUrl;
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-mongoose.connect(
-  "mongodb+srv://Nidhin_5656:Nidhin%401606@cluster0.anuhjsu.mongodb.net/",
-  {
-    dbName: "Login",
-  }
-);
+mongoose.connect(DATABASE_URL1, {
+  dbName: "Login",
+});
 
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));

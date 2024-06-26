@@ -6,13 +6,14 @@ export default function Login() {
   const [userName, setUsername] = useState("");
   const [passWord, setPassword] = useState("");
   const navigate = useNavigate();
+  const serverURL = process.env.REACT_APP_API_URL;
 
   const hanldeRegister = async () => {
     if (!userName || !passWord) {
       alert("Please fill all the fields");
     } else {
       try {
-        const response = await axios.post("http://localhost:3000/register", {
+        const response = await axios.post(`${serverURL}/register`, {
           username: userName,
           password: passWord,
           headers: {
@@ -40,7 +41,7 @@ export default function Login() {
       alert("Please fill all the fields");
     } else {
       try {
-        const response = await axios.post("http://localhost:3000/login", {
+        const response = await axios.post(`${serverURL}/login`, {
           username: userName,
           password: passWord,
           headers: {
